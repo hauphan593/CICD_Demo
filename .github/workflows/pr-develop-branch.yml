@@ -31,13 +31,7 @@ jobs:
         if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
             - name: Check Node.js version before setup
-              run: node -v || echo "Node.js not installed"
-            # - name: Remove existing Node.js
-            #   run: |
-            #     sudo rm -rf /usr/local/bin/node
-            #     sudo rm -rf /usr/local/lib/node_modules
-            #     sudo rm -rf ~/.npm
-            #     sudo rm -rf ~/.nvm
+              run: node -v || echo "Node.js not installed
             # Now we install nodejs in the VM, and specify version 14
             #- uses: actions/setup-node@v3
             #  with:
@@ -110,11 +104,16 @@ jobs:
             # Now Install Salesforce CLI
             - name: 'Install Salesforce CLI'
               run: |
-                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
-                  mkdir ~/sfdx
-                  tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
-                  echo "$HOME/sfdx/bin" >> $GITHUB_PATH
-                  ~/sfdx/bin/sfdx version
+                  wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
+                  # wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+                  mkdir -p ~/cli/sf
+                  # mkdir ~/sfdx
+                  tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
+                  # tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
+                  echo "$HOME/sf/bin" >> $GITHUB_PATH
+                  # echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+                  ~/sf/bin/sf version
+                  # ~/sfdx/bin/sfdx version
             - name: Check Node.js version
               run: node -v
             # Then we install the SFDX-Git-Delta plugin - https://github.com/scolladon/sfdx-git-delta
