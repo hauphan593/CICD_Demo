@@ -6,7 +6,7 @@ export default class HelloWorldBadge extends LightningElement {
         getDate = Date.now();
         console.log('this is feature');
         console.log('this is feature update at 1743-250319');
-        console.log('this is feature 3');
+        console.log('this is feature update at 1754-250319');
     }
 
 }
