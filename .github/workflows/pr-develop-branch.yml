@@ -32,22 +32,6 @@ jobs:
         runs-on: ubuntu-latest
         if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
-            - name: Check Node.js version before setup
-              run: node -v || echo "Node.js not installed"
-            # Now we install nodejs in the VM, and specify version 14
-            #- uses: actions/setup-node@v3
-            #  with:
-            #    node-version: '18.18.0'
-            #- name: Check Node.js version
-            #  run: node -v
-              
-            # # Install Yarn globally
-            # - name: Install Yarn
-            #   run: npm install -g yarn
-
-            # # Verify Yarn installation
-            # - name: Check Yarn version
-            #   run: yarn -v
 
             # The idea is that the VM can access your remote repository
             # because your repository is an sfdx project.
@@ -111,7 +95,6 @@ jobs:
                   tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
                   echo "$HOME/cli/sf/bin" >> $GITHUB_PATH
                   ~/cli/sf/bin/sf version
-                  # ~/sfdx/bin/sfdx version
             - name: Check Node.js version
               run: node -v
             # Then we install the SFDX-Git-Delta plugin - https://github.com/scolladon/sfdx-git-delta
@@ -123,8 +106,7 @@ jobs:
               run: | 
                   echo y | sf plugins:install sfdx-git-delta
                   sf plugins 
-            - name: Check Node.js version
-              run: node -v
+
             # Install java as it is required for the next step
             - name: 'Installing java'
               run: |
@@ -160,7 +142,7 @@ jobs:
 
             # Authenticate to org using the URL stored in the text file
             - name: 'Authenticate to Integration Org'
-              run: sfdx auth:sfdxurl:store -f ./SFDX_INTEGRATION_URL.txt -s -a integration
+              run: sf org login sfdx-url -f ./SFDX_INTEGRATION_URL.txt --set-default --alias integration
 
             # We use SFDX Git Delta to create a directory with only the metadata that has changed.
             # this allows us to deploy only those changes, as opposed to deploying the entire branch. 
