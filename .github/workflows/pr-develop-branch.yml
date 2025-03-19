@@ -30,6 +30,8 @@ jobs:
         runs-on: ubuntu-latest
         if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
+            - name: Check Node.js version before setup
+              run: node -v || echo "Node.js not installed"
             - name: Remove existing Node.js
               run: |
                 sudo rm -rf /usr/local/bin/node
@@ -42,6 +44,14 @@ jobs:
                 node-version: '18.18.0'
             - name: Check Node.js version
               run: node -v
+              
+            # Install Yarn globally
+            - name: Install Yarn
+              run: npm install -g yarn
+
+            # Verify Yarn installation
+            - name: Check Yarn version
+              run: yarn -v
 
             # The idea is that the VM can access your remote repository
             # because your repository is an sfdx project.
