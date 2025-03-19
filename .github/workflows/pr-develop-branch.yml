@@ -31,7 +31,7 @@ jobs:
         if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
             - name: Check Node.js version before setup
-              run: node -v || echo "Node.js not installed
+              run: node -v || echo "Node.js not installed"
             # Now we install nodejs in the VM, and specify version 14
             #- uses: actions/setup-node@v3
             #  with:
