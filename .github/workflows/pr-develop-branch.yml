@@ -39,19 +39,19 @@ jobs:
                 sudo rm -rf ~/.npm
                 sudo rm -rf ~/.nvm
             # Now we install nodejs in the VM, and specify version 14
-            - uses: actions/setup-node@v3
-              with:
-                node-version: '18.18.0'
-            - name: Check Node.js version
-              run: node -v
+            #- uses: actions/setup-node@v3
+            #  with:
+            #    node-version: '18.18.0'
+            #- name: Check Node.js version
+            #  run: node -v
               
-            # Install Yarn globally
-            - name: Install Yarn
-              run: npm install -g yarn
+            # # Install Yarn globally
+            # - name: Install Yarn
+            #   run: npm install -g yarn
 
-            # Verify Yarn installation
-            - name: Check Yarn version
-              run: yarn -v
+            # # Verify Yarn installation
+            # - name: Check Yarn version
+            #   run: yarn -v
 
             # The idea is that the VM can access your remote repository
             # because your repository is an sfdx project.
@@ -131,7 +131,8 @@ jobs:
               run: |
                 sudo apt-get update
                 sudo apt install default-jdk
-
+            - name: Check Node.js version
+              run: node -v
             # Install SFDX scanner
             - name: 'Installing SFDX scanner'
               run: sfdx plugins:install @salesforce/sfdx-scanner
