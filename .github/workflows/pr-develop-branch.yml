@@ -105,13 +105,9 @@ jobs:
             - name: 'Install Salesforce CLI'
               run: |
                   wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
-                  # wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
                   mkdir -p ~/cli/sf
-                  # mkdir ~/sfdx
                   tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
-                  # tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
-                  echo "$HOME/sf/bin" >> $GITHUB_PATH
-                  # echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+                  echo "$HOME/cli/sf/bin" >> $GITHUB_PATH
                   ~/cli/sf/bin/sf version
                   # ~/sfdx/bin/sfdx version
             - name: Check Node.js version
@@ -121,10 +117,10 @@ jobs:
             # that has changed between commits. I highly recommend going over the github readme 
             # for more information on how this works.
 
-            - name: 'Installing sfdx git delta'
+            - name: 'Installing sf git delta'
               run: | 
-                  echo y | sfdx plugins:install sfdx-git-delta
-                  sfdx plugins 
+                  echo y | sf plugins:install sfdx-git-delta
+                  sf plugins 
             - name: Check Node.js version
               run: node -v
             # Install java as it is required for the next step
@@ -143,7 +139,7 @@ jobs:
               run: node -v
             # Install SFDX scanner
             - name: 'Installing SFDX scanner'
-              run: sfdx plugins:install @salesforce/sfdx-scanner
+              run: sf plugins:install @salesforce/sfdx-scanner
 
             # Prior to setting up this workflow, you have to create a Github Secret
             # that contains the sfdx url of the integration/qa org.
