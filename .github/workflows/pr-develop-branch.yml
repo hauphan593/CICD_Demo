@@ -185,6 +185,7 @@ jobs:
               uses: github/codeql-action/upload-sarif@v3
               with:
                 sarif_file: changed-sources/apexScanResults.sarif
+                actions: read
 
             # We do a check-only deploy and we only run the tests specified in the PR
             # If the env variable does not equal 'all', we know that there is a list of
