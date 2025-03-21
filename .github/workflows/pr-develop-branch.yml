@@ -150,7 +150,8 @@ jobs:
             - name: 'Create delta packages for new, modified or deleted metadata'
               run: | 
                   mkdir changed-sources
-                  sf sgd:source:delta --to "HEAD" --from "HEAD^" --output-dir changed-sources/ --generate-delta --source-dir force-app/ 
+                   sf sgd:source:delta --to "HEAD" --from "origin/develop" --output-dir changed-sources/ --generate-delta --source-dir force-app/
+            #      sf sgd:source:delta --to "HEAD" --from "HEAD^" --output-dir changed-sources/ --generate-delta --source-dir force-app/ 
             #      sf project deploy preview --source-dir "changed-sources/force-app"
 
             # Now we can use the sfdx scanner to scan the code in the delta directory
