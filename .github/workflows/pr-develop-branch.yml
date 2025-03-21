@@ -150,13 +150,20 @@ jobs:
             - name: 'Create delta packages for new, modified or deleted metadata'
               run: | 
                   mkdir changed-sources
-                  sf sgd:source:delta --to "HEAD" --from "HEAD^" --output changed-sources/ --generate-delta --source force-app/ 
+                   sf sgd:source:delta --to "HEAD" --from "origin/develop" --output-dir changed-sources/ --generate-delta --source-dir force-app/
+            #      sf sgd:source:delta --to "HEAD" --from "HEAD^" --output-dir changed-sources/ --generate-delta --source-dir force-app/ 
+            #      sf project deploy preview --source-dir "changed-sources/force-app"
+            - name: Debug - Check changed files 250321-1732
+              run: ls -R changed-sources/force-app/
+                   tree changed-sources/
 
             # Now we can use the sfdx scanner to scan the code in the delta directory
             # The output of the scan is stored in a file called apexScanResults.sarif
 
             # The .sarif file can later be uploaded to github, so that we can see the 
             # results of the scan directly from the PR.
+              
+                  
 
             - name: 'Scan code'
               run: |
