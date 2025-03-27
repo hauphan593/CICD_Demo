@@ -161,9 +161,6 @@ jobs:
 
             # The .sarif file can later be uploaded to github, so that we can see the 
             # results of the scan directly from the PR.
-              
-                  
-
             - name: 'Scan code'
               run: |
                   cd changed-sources
