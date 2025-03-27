@@ -155,16 +155,12 @@ jobs:
             #      sf project deploy preview --source-dir "changed-sources/force-app"
             - name: Debug - Check changed files 250321-1732
               run: ls -R changed-sources/force-app/
-                   tree changed-sources/
 
             # Now we can use the sfdx scanner to scan the code in the delta directory
             # The output of the scan is stored in a file called apexScanResults.sarif
 
             # The .sarif file can later be uploaded to github, so that we can see the 
             # results of the scan directly from the PR.
-              
-                  
-
             - name: 'Scan code'
               run: |
                   cd changed-sources
