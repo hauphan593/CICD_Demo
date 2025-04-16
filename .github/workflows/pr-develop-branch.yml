@@ -139,6 +139,7 @@ jobs:
               shell: bash
               run: |
                   echo ${{ secrets.SFDX_INTEGRATION_URL}} > ./SFDX_INTEGRATION_URL.txt
+                  echo ${{ secrets.SFDX_INTEGRATION_URL_TMC_DEV}} > ./SFDX_INTEGRATION_URL_TMC_DEV.txt
 
             # Authenticate to org using the URL stored in the text file
             - name: 'Authenticate to Integration Org'
